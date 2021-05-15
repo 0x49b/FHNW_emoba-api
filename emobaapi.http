@@ -1,0 +1,11 @@
+POST http://localhost:8000/api/v1/addressbook
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: Token 6538daa1dc1aeb78ff05e64b8db77fffa5846cf4
+
+--WebAppBoundary
+Content-Disposition: form-data; nickname="Antman"
+
+field-value
+--WebAppBoundary--
+
+###
