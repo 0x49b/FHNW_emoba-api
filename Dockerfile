@@ -33,12 +33,15 @@ RUN echo "" > $CONTAINER_PROJECT/logs/gunicorn.log
 COPY . $CONTAINER_PROJECT
 
 # Install Python dependencies
+#RUN python -m pip install --upgrade pip
 RUN pip install -r $CONTAINER_PROJECT/requirements.txt
+RUN python manage.py collectstatic
+RUN ["chmod", "+x", "/opt/emoba/staticfiles"]
 
 # Copy and set entrypoint
 WORKDIR $CONTAINER_PROJECT
-COPY ./start.sh /
-RUN ["chmod", "+x", "/opt/emoba/start.sh"]
+#COPY ./start.sh /
+#RUN ["chmod", "+x", "/opt/emoba/start.sh"]
 
 EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

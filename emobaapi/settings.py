@@ -4,7 +4,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -71,12 +71,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'emobaapi.exceptions.custom_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-    ],
-    'EXCEPTION_HANDLER': 'emobaapi.api.views.api_exception_handler',
+    ]
 }
+
 DJOSER = {
     "USER_ID_FIELD": "username"
 }

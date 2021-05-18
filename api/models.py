@@ -10,7 +10,7 @@ class ThatsAppUser(models.Model):
         verbose_name_plural = "ThatsAppUsers"
 
     id = models.UUIDField(primary_key=True, blank=True, default=uuid.uuid4, editable=False)
-    nickname = models.CharField(max_length=500, blank=False, null=False, verbose_name='nickname')
+    nickname = models.CharField(max_length=500, blank=False, null=False, unique=True, verbose_name='nickname')
     mqtt_topic = models.CharField(max_length=1000, blank=True, null=False, verbose_name='topic')
     added = models.DateTimeField(auto_now_add=True)
 
