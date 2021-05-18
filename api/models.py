@@ -11,7 +11,8 @@ class ThatsAppUser(models.Model):
 
     id = models.UUIDField(primary_key=True, blank=True, default=uuid.uuid4, editable=False)
     nickname = models.CharField(max_length=500, blank=False, null=False, unique=True, verbose_name='nickname')
-    mqtt_topic = models.CharField(max_length=1000, blank=True, null=False, verbose_name='topic')
+    mqtt_topic = models.CharField(max_length=1000, blank=True, null=False, editable=False, verbose_name='topic')
+    avatar = models.URLField(null=True, blank=True, verbose_name='avatar')
     added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

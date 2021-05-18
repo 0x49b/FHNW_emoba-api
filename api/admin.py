@@ -3,7 +3,7 @@ from .models import ThatsAppUser
 
 
 class ThatsAppUserAdmin(admin.ModelAdmin):
-    list_display = ("id", "nickname", "mqtt_topic", "added")
+    list_display = ("id", "nickname", "mqtt_topic", "avatar", "added")
 
 
 admin.site.register(ThatsAppUser, ThatsAppUserAdmin)
