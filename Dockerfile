@@ -19,10 +19,6 @@ LABEL traefik.http.services.emoba.loadbalancer.server.port="8000"
 ENV PROJECT=emoba
 ENV CONTAINER_HOME=/opt
 ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
-ENV PERMANENT_CLOSED="22.01.2021 23:59:59"
-
-# Image updates
-# RUN apt-get update && apt-get upgrade
 
 # Create application subdirectories
 RUN mkdir $CONTAINER_PROJECT
@@ -35,8 +31,10 @@ COPY . $CONTAINER_PROJECT
 # Install Python dependencies
 #RUN python -m pip install --upgrade pip
 RUN pip install -r $CONTAINER_PROJECT/requirements.txt
-RUN python manage.py collectstatic
+RUN python manage.py collectstatic --noinput
 RUN ["chmod", "+x", "/opt/emoba/staticfiles"]
+
+RUN python manage.py collectstatic --noinput
 
 # Copy and set entrypoint
 WORKDIR $CONTAINER_PROJECT
